@@ -1,9 +1,27 @@
 require 'spec_helper'
 
 describe 'User' do
+
+  # t.string   :slug
+  #     t.string   :title
+  #     t.text     :content
+  #     t.boolean  :is_published, :default => false
+
+  before(:each) do
+    @post1 = Post.create()
+    @post2 = double("post", :title => "Title2")
+  end
+
+  let(:posts) { [@post1, @post2] }
+
   context "on homepage" do
+
     it "sees a list of recent posts titles" do
-      pending
+      @recent_posts = posts
+      p @recent_posts
+      visit '/' 
+      expect(page).to have_content "ddd"
+
       # given a user and a list of posts
       # user visits the homepage
       # user can see the posts titles
